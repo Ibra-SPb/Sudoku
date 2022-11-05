@@ -20,7 +20,24 @@ function isSolved(board) {
  * Подумай, как симпатичнее сформировать эту строку.
  */
 function prettyBoard(board) {
+  let result = board.match(/.{9}/g).map(el => {
+    el = el.split('');
+    el.unshift('|');
+    el.push('|')
+    el.splice(4, 0, '|');
+    el.splice(8, 0, '|');
+    return el;
+  })
 
+  const border = '|=======|=======|=======|';
+  
+  result = result.map(el => el.join(' '));
+  result.unshift(border);
+  result.push(border);
+  result.splice(4, 0, border);
+  result.splice(8, 0, border);
+
+  return result.join('\n');
 }
 
 // Экспортировать функции для использования в другом файле (например, readAndSolve.js).
